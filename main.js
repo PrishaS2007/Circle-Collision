@@ -25,58 +25,58 @@ for (let n = 1; n <= 65; n++) {
 }
 
 function randomCirc() {
-    return {
-        x: randomInteger(0, cnv.width),
-        y: randomInteger(0, cnv.height),
-        r: randomInteger(2, 8),
-        c: randomColor()
-    }
+return {
+  x: randomInteger(0, cnv.width),
+  y: randomInteger(0, cnv.height),
+  r: randomInteger(2, 8),
+  c: randomColor()
+ }
 }
 
 // Draw Function
 window.addEventListener("load", draw);
 
 function draw() {
-    frameCount++;
-    ctx.clearRect(0, 0, cnv.width, cnv.height);
+ frameCount++;
+ ctx.clearRect(0, 0, cnv.width, cnv.height);
    
-    // Draw Player
-    ctx.strokeStyle = "blue";
-    ctx.beginPath();
-    ctx.arc(player.x, player.y, player.r, 0, 2 * Math.PI);
-    ctx.stroke();
+ // Draw Player
+ ctx.strokeStyle = "blue";
+ ctx.beginPath();
+ ctx.arc(player.x, player.y, player.r, 0, 2 * Math.PI);
+ ctx.stroke();
 
-    // Draw Food (Circles)
-    for (let i = 0; i < circles.length; i++) {
-        drawCircle(circles[i]);
+ // Draw Food (Circles)
+ for (let i = 0; i < circles.length; i++) {
+ drawCircle(circles[i]);
     
-    // Check for Circle Collision
-    let circle = circles[i];
-    let d = Math.sqrt((player.x - circle.x) **2 + (player.y - circle.y) **2);
-    if (d < player.r + circle.r) {
-      player.r += (circle.r / 8);
-      circles.splice(i, 1);
-    }   
+ // Check for Circle Collision
+ let circle = circles[i];
+ let d = Math.sqrt((player.x - circle.x) **2 + (player.y - circle.y) **2);
+ if (d < player.r + circle.r) {
+  player.r += (circle.r / 8);
+  circles.splice(i, 1);
+ }   
 }
 
-     // Add food (Circles
-    if (frameCount % 200 === 0) {
-        circles.push(randomCirc());
-    }
+// Add food (Circles
+if (frameCount % 200 === 0) {
+ circles.push(randomCirc());
+}
     
-    // Boundary Check
-    player.x = constrain(player.x, player.r, cnv.width - player.r)
-    player.y = constrain(player.y, player.r, cnv.height - player.r)
+// Boundary Check
+player.x = constrain(player.x, player.r, cnv.width - player.r)
+player.y = constrain(player.y, player.r, cnv.height - player.r)
 
     
-    requestAnimationFrame(draw);
+requestAnimationFrame(draw);
 }
 
 function drawCircle(circle) {
-    ctx.fillStyle = circle.c;
-    ctx.beginPath();
-    ctx.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
-    ctx.fill();
+ctx.fillStyle = circle.c;
+ctx.beginPath();
+ctx.arc(circle.x, circle.y, circle.r, 0, 2 * Math.PI);
+ctx.fill();
 }
 
 
@@ -91,16 +91,15 @@ mouseX = Math.round(event.clientX - cnvRect.left);
 mouseY = Math.round(event.clientY - cnvRect.top);
    
 let rise = mouseY - player.x;
-    let run = mouseX - player.x
-    let d = Math.sqrt(run ** 2 + rise **2);
+let run = mouseX - player.x
+let d = Math.sqrt(run ** 2 + rise **2);
     
-    if (d > 0) {
-    let dx = (run / d) * player.s;
-    let dy = (rise / d) * player.s;
+if (d > 0) {
+let dx = (run / d) * player.s;
+let dy = (rise / d) * player.s;
 
-    player.x += dx;
-    player.y += dy;
-
+player.x += dx;
+player.y += dy;
 }
 }
 
