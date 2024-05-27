@@ -20,7 +20,7 @@ s: 4
 
 // Circle Food Array
 let circles = [];
-for (let n = 1; n <= 65; n++) {
+for (let n = 1; n <= 40; n++) {
     circles.push(randomCirc());
 }
 
