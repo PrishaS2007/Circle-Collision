@@ -15,7 +15,7 @@ let player = {
 x: cnv.width / 2,
 y: cnv.height / 2,
 r: 20,
-s: 3
+s: 4
 }
 
 // Circle Food Array
